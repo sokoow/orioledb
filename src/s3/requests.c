@@ -188,7 +188,7 @@ s3_list_objects(void)
 	(void) SHA256(NULL, 0, hash);
 	contenthash = hex_string((Pointer) hash, sizeof(hash));
 
-	url = psprintf("https://%s/%s", s3_host, "");
+	url = psprintf("http://%s/%s", s3_host, "");
 	datestring = httpdate(NULL);
 	datetimestring = httpdatetime(NULL);
 	signature = s3_signature("GET", datetimestring, datestring, "",
@@ -255,7 +255,7 @@ s3_get_object(char *objectname, StringInfo str)
 	(void) SHA256(NULL, 0, hash);
 	contenthash = hex_string((Pointer) hash, sizeof(hash));
 
-	url = psprintf("https://%s/%s", s3_host, objectname);
+	url = psprintf("http://%s/%s", s3_host, objectname);
 	datestring = httpdate(NULL);
 	datetimestring = httpdatetime(NULL);
 	signature = s3_signature("GET", datetimestring, datestring, objectname,
